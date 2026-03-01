@@ -34,8 +34,8 @@ const ChatPage = () => {
     const fetchData = async () => {
       try {
         const [meRes, usersRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/auth/me", { withCredentials: true }),
-          axios.get("http://localhost:5000/api/auth/users", { withCredentials: true }),
+          axios.get(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/me`, { withCredentials: true }),
+          axios.get(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/users`, { withCredentials: true }),
         ]);
 
         setCurrentUser(meRes.data);
@@ -78,7 +78,7 @@ const ChatPage = () => {
           
           try {
             const res = await axios.get(
-              `http://localhost:5000/api/messages/${roomId}?limit=1`,
+              `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/messages/${roomId}?limit=1`,
               { withCredentials: true }
             );
             

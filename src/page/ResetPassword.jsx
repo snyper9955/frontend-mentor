@@ -13,7 +13,7 @@ const ResetPassword = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/reset-password/${token}`,
+        `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/reset-password/${token}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

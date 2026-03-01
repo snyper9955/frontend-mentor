@@ -15,7 +15,7 @@ const Register = () => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/users");
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/users`);
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -29,7 +29,7 @@ const Register = () => {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -12,7 +12,7 @@ const CreateMeeting = () => {
   // Fetch Mentors
   const fetchMentors = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/users", {
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/users`, {
         credentials: "include",
       });
 
@@ -37,7 +37,7 @@ const CreateMeeting = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/meetings-request", {
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/meetings-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

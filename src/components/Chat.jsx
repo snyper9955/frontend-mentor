@@ -63,7 +63,7 @@ const Chat = ({ selectedUser, user_id }) => {
     const fetchUserStatus = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/auth/user/${selectedUser._id}`,
+          `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/user/${selectedUser._id}`,
           { withCredentials: true }
         );
         setUserOnlineStatus({
@@ -90,7 +90,7 @@ const Chat = ({ selectedUser, user_id }) => {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/messages/${roomId}`
+          `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/messages/${roomId}`
         );
         setMessages(res.data.messages || []);
         setHasMarkedSeen(false);
@@ -127,7 +127,7 @@ const Chat = ({ selectedUser, user_id }) => {
     if (hasUnseenMessages) {
       try {
         await axios.put(
-          `http://localhost:5000/api/messages/seen/${roomId}`,
+          `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/messages/seen/${roomId}`,
           { userId: user_id },
           { withCredentials: true }
         );
@@ -309,7 +309,7 @@ const Chat = ({ selectedUser, user_id }) => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/messages/${id}`,
+        `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/messages/${id}`,
         { withCredentials: true }
       );
 
@@ -329,7 +329,7 @@ const Chat = ({ selectedUser, user_id }) => {
   const handleUpdate = async (id) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/messages/${id}`,
+        `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/messages/${id}`,
         { message: editText },
         { withCredentials: true }
       );

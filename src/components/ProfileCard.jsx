@@ -7,7 +7,7 @@ const ProfileCard = ({ user }) => {
   const sendMessage = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/messages",
+        `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/messages`,
         {
           receiver: user._id,
           text: message,

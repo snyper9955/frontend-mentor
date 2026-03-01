@@ -8,7 +8,7 @@ const ActivityChart = () => {
 useEffect(() => {
   const fetchActivity = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/weekly", {
+      const res = await axios.get(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/weekly`, {
         withCredentials: true,
       });
 

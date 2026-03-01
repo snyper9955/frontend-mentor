@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Logout from "../components/Logout";
 import { useTheme } from "../hooks/useTheme";
 import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -10,7 +11,7 @@ const Home = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/me`, {
         credentials: "include",
       });
 
@@ -67,14 +68,17 @@ const Home = () => {
           <p className="mb-4">
             <strong>Role:</strong> {user.role}
           </p>
+        
 
-          <Logout />
          
         </div>
 
       ) : (
         <div className="text-center">
           <p className="text-red-500 text-lg">Please login first</p>
+            <Link to={'/register'} className="px-2 sm:px-3 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm transition">Register </Link>
+
+        
         </div>
       )}
     </div>

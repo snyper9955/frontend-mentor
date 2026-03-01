@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState([]); // 🔥 all users here
   const [loading, setLoading] = useState(true);
 
-  const API = "http://localhost:5000/api";
+  const API = `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api`;
 
   // ================= LOAD AUTH USER =================
   useEffect(() => {

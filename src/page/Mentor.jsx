@@ -6,7 +6,7 @@ const MentorList = () => {
   const navigate = useNavigate();
 
   const fetchMentors = async () => {
-    const res = await fetch("http://localhost:5000/api/auth/mentors", {
+    const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/mentors`, {
       credentials: "include",
     });
 

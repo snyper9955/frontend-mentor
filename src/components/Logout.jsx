@@ -5,7 +5,7 @@ const Logout = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/logout`, {
         method: "POST",
         credentials: "include", // 🔥 important
       });

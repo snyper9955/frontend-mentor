@@ -10,7 +10,7 @@ const UserProfile = () => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/auth/me`,
+          `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/auth/me`,
           { withCredentials: true }
         );
 

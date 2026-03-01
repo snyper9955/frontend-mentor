@@ -16,7 +16,7 @@ export const ScreenTimeProvider = ({ children }) => {
   const sessionRef = useRef(0);
   const location = useLocation();
 
-  const API = "http://localhost:5000/api/activity";
+  const API = `${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/api/activity`;
 
   // ==============================
   // Format Time

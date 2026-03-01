@@ -8,7 +8,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/forgot-password", {
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || (window.location.hostname === "localhost" ? "http://localhost:5000" : "https://backend-mentor.onrender.com"))}/forgot-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
