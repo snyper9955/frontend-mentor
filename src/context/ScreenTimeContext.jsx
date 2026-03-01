@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { AuthContext } from "./AuthContext"; // ✅ Added Auth context import
 
 const ScreenTimeContext = createContext();
 
 export const ScreenTimeProvider = ({ children }) => {
+  const { user } = useContext(AuthContext); // ✅ Extract user
   const [todayTotal, setTodayTotal] = useState(0);
   const [reportData, setReportData] = useState([]);
   const [reportType, setReportType] = useState("daily");
@@ -113,13 +115,17 @@ export const ScreenTimeProvider = ({ children }) => {
   };
 
   // ==============================
-  // Start Timer
+  // Start Timer & Initial Fetch
   // ==============================
   useEffect(() => {
-    fetchToday();
-    fetchReport("daily");
-    fetchDayWiseReport(); // ✅ load all previous days on start
+    if (user) {
+      fetchToday();
+      fetchReport("daily");
+      fetchDayWiseReport();
+    }
+  }, [user]);
 
+  useEffect(() => {
     const interval = setInterval(() => {
       if (!document.hidden) {
         sessionRef.current += 1;
